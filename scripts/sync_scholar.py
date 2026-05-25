@@ -219,7 +219,6 @@ def render_publications(
   <main id="main">
     <p class="section-label">Research</p>
     <h1>Publications</h1>
-    <p class="page-lede">Publications synced from Google Scholar, with manual overrides for project pages.</p>
     {scholar_link}
     <table class="pub-table">
       <thead>
