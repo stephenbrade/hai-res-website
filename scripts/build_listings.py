@@ -53,7 +53,12 @@ def parse_meta(html_path: Path) -> dict[str, str]:
 
 def resolve_thumbnail(entry: Entry) -> str:
     thumb = entry.meta.get("thumbnail", "./assets/images/placeholder.svg")
-    return f"./{entry.folder}/{thumb.lstrip('./')}"
+    rel = thumb.lstrip("./")
+    url = f"./{entry.folder}/{rel}"
+    thumb_path = ROOT / entry.folder / rel
+    if thumb_path.is_file():
+        url = f"{url}?v={int(thumb_path.stat().st_mtime)}"
+    return url
 
 
 def validate_blog_thumbnail(index: Path, child: Path, meta: dict[str, str]) -> list[str]:
@@ -140,7 +145,7 @@ def scan_directory(base: Path, url_prefix: str) -> list[Entry]:
     return entries
 
 
-def export_blog_json(blogs: list[Entry]) -> None:
+def build_blog_payload(blogs: list[Entry]) -> list[dict]:
     entries = sorted(blogs, key=lambda e: e.meta["date"], reverse=True)
     payload = []
     for entry in entries:
@@ -155,10 +160,31 @@ def export_blog_json(blogs: list[Entry]) -> None:
                 "thumbnail": resolve_thumbnail(entry),
             }
         )
+    return payload
+
+
+def export_blog_json(payload: list[dict]) -> None:
     out_path = ROOT / "data" / "blog.json"
     out_path.parent.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {out_path.relative_to(ROOT)}")
+
+
+def sync_home_carousel(payload: list[dict]) -> None:
+    index_path = ROOT / "index.html"
+    text = index_path.read_text(encoding="utf-8")
+    json_str = json.dumps(payload, ensure_ascii=False)
+    replacement = f'<script type="application/json" id="blog-carousel-data">{json_str}</script>'
+    pattern = r'<script type="application/json" id="blog-carousel-data">.*?</script>'
+    if re.search(pattern, text, re.DOTALL):
+        text = re.sub(pattern, replacement, text, count=1, flags=re.DOTALL)
+    else:
+        text = text.replace(
+            '  <script src="./assets/js/home-carousel.js"></script>',
+            f"  {replacement}\n  <script src=\"./assets/js/home-carousel.js?v=3\"></script>",
+        )
+    index_path.write_text(text, encoding="utf-8")
+    print(f"Wrote {index_path.relative_to(ROOT)} carousel data")
 
 
 def page_shell(title: str, active: str, body: str) -> str:
@@ -273,7 +299,9 @@ def main() -> None:
     blogs = scan_directory(ROOT / "blog_posts", "blog_posts")
     music = scan_directory(ROOT / "music", "music")
 
-    export_blog_json(blogs)
+    blog_payload = build_blog_payload(blogs)
+    export_blog_json(blog_payload)
+    sync_home_carousel(blog_payload)
 
     outputs = {
         ROOT / "people.html": render_people(profiles),

@@ -24,20 +24,16 @@
       </nav>
     </div>
   </header>
+  <section class="blog-carousel" id="blog-carousel" aria-label="Featured blog posts" aria-roledescription="carousel" hidden>
+    <div class="blog-carousel__track"></div>
+    <div class="blog-carousel__nav">
+      <span class="blog-carousel__counter"></span>
+      <button type="button" class="blog-carousel__arrow blog-carousel__arrow--prev" aria-label="Previous post">←</button>
+      <button type="button" class="blog-carousel__arrow blog-carousel__arrow--next" aria-label="Next post">→</button>
+    </div>
+    <div class="blog-carousel__dots" role="tablist" aria-label="Blog post slides"></div>
+  </section>
   <main id="main">
-    <section class="blog-carousel" id="blog-carousel" aria-label="Featured blog posts" hidden>
-      <div class="blog-carousel__track"></div>
-      <div class="blog-carousel__overlay">
-        <p class="blog-carousel__date"></p>
-        <h2 class="blog-carousel__title"></h2>
-        <p class="blog-carousel__excerpt"></p>
-        <a class="blog-carousel__link" href="#">Read more</a>
-      </div>
-      <div class="blog-carousel__dots" role="tablist" aria-label="Blog post slides"></div>
-    </section>
-
-    <div class="notice-banner">Preview site — content and styling will iterate.</div>
-
     <section class="lab-intro">
       <h1>Human-AI Resonance Lab</h1>
       <p class="page-lede">We are a research lab at MIT exploring generative AI for live musical interaction—building systems that musicians can jam with, steer, and understand in real time.</p>
@@ -51,6 +47,7 @@
     <p>Human-AI Resonance Lab · MIT</p>
   </footer>
   <script src="./assets/js/site.js"></script>
-  <script src="./assets/js/home-carousel.js"></script>
+  <script type="application/json" id="blog-carousel-data">[{"slug": "live_music_diffusion_models", "url": "./blog_posts/live_music_diffusion_models/index.html", "date": "2026-05-01", "title": "Live Music Diffusion Models", "subtitle": "Interactive diffusion music generators", "excerpt": "Supplementary audio samples, live generative delay demos, and evaluation clips for LMDM.", "thumbnail": "./blog_posts/live_music_diffusion_models/assets/cover.png?v=1779746704"}, {"slug": "agents_in_concert", "url": "./blog_posts/agents_in_concert/index.html", "date": "2026-03-01", "title": "Agents in Concert", "subtitle": "Bringing AI to the stage with jazz musicians", "excerpt": "A condensed account of co-designing three AI performance systems for a public concert at MIT.", "thumbnail": "./blog_posts/agents_in_concert/assets/thumbnail.svg?v=1779736350"}]</script>
+  <script src="./assets/js/home-carousel.js?v=3"></script>
 </body>
 </html>
