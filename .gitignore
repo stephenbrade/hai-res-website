@@ -1,0 +1,7 @@
+.venv/
+.DS_Store
+blog_posts/_reference_lmdm-public/
+
+# Video files are too large for GitHub; host on YouTube and embed instead.
+*.mp4
+*.mov

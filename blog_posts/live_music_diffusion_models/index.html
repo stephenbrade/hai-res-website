@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="hai-res:type" content="blog">
+  <meta name="hai-res:date" content="2026-05-01">
+  <meta name="hai-res:title" content="Live Music Diffusion Models">
+  <meta name="hai-res:subtitle" content="Interactive diffusion music generators">
+  <meta name="hai-res:excerpt" content="Supplementary audio samples, live generative delay demos, and evaluation clips for LMDM.">
+  <meta name="hai-res:thumbnail" content="./assets/thumbnail.svg">
+  <!-- Helps YouTube embeds receive a valid Referer (avoids Error 153 with strict referrer policies). -->
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>Live Music Diffusion Models · Human-AI Resonance</title>
+  <meta name="description" content="Supplementary page for Live Music Diffusion Models: audio samples and user study videos.">
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="../../index.html"><img src="../../assets/images/logo.png" alt="Human-AI Resonance" class="site-brand__logo"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../people.html">People</a></li>
+          <li><a href="../../blog.html">Blog</a></li>
+          <li><a href="../../publications.html">Publications</a></li>
+          <li><a href="../../music.html">Music</a></li>
+          <li><a href="../../join.html">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="blog-post-shell" id="main">
+  <a class="profile-back" href="../../blog.html">← Blog</a>
+  <header class="paper-header">
+    <div class="paper-header__inner">
+      <h1 class="title">Live Music Diffusion Models: Efficient Fine-Tuning and Post-Training of Interactive Diffusion Music Generators</h1>
+      <p class="authors">
+        Zachary Novack<sup>1*</sup>,
+        Stephen Brade<sup>2*</sup>,
+        Haven Kim<sup>1</sup>,
+        Hugo Flores García<sup>3</sup>,
+        Nithya Shikarpur<sup>2</sup>,
+        Chinmay Talegaonkar<sup>1</sup>,
+        Suwan Kim<sup>2</sup>,
+        Valerie K. Chen<sup>2</sup>,
+        Julian McAuley<sup>1</sup>,
+        Taylor Berg-Kirkpatrick<sup>1</sup>,
+        Cheng-Zhi Anna Huang<sup>2</sup>
+      </p>
+      <p class="affiliations">
+        <sup>1</sup> UC San Diego &nbsp;·&nbsp;
+        <sup>2</sup> MIT &nbsp;·&nbsp;
+        <sup>3</sup> Adobe
+      </p>
+      <p class="author-note">
+        <sup>*</sup> Equal contribution. Correspondence:
+        <a href="mailto:znovack@ucsd.edu">znovack@ucsd.edu</a>,
+        <a href="mailto:brade@mit.edu">brade@mit.edu</a>
+      </p>
+      <p class="links-row header-links">
+        <a class="link-pill" href="https://arxiv.org/abs/2605.22717" target="_blank" rel="noopener noreferrer">Paper (arXiv)</a>
+        <a class="link-pill" href="https://github.com/ZacharyNovack/live-music-diffusion-models" target="_blank" rel="noopener noreferrer">Code (GitHub)</a>
+      </p>
+      <nav aria-label="Sections">
+        <ul class="nav-toc">
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#cherry-picked">Cherry-picked</a></li>
+          <li><a href="#generative-delay">Live interactions</a></li>
+          <li><a href="#text-conditioned">Text-conditioned</a></li>
+          <li><a href="#prompt-transitions">Time-varying</a></li>
+          <li><a href="#accompaniment">Accompaniment</a></li>
+          <li><a href="#cite">Cite</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview">
+      <h2>Overview</h2>
+      <p class="lede">
+        This page hosts listening examples and sample interactions for <em>Live Music Diffusion Models: Efficient Fine-Tuning and Post-Training of Interactive Diffusion Music Generators</em>.
+        Curated highlights appear first (cherry-picked text-to-music samples and live generative delay demos), followed by uncurated evaluation samples.
+      </p>
+      <div class="video-grid">
+        <article class="video-card">
+          <h3>Overview video</h3>
+          <p>Overview of the Live Music Diffusion Models project, generative delay interactions, and supplementary materials on this page.</p>
+          <iframe src="https://www.youtube-nocookie.com/embed/dNas2_7dsB4" title="LMDM overview" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </article>
+      </div>
+    </section>
+
+    <section id="cherry-picked">
+      <h2>Cherry-picked examples</h2>
+      <p class="lede">
+        A curated set of text-to-music generations spanning diverse genres, tempos, and moods, selected to showcase the model's range.
+      </p>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Prompt</th>
+              <th>Sample</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="prompt-cell">This song is an exciting and driving progressive house song. It has a driving kick drum, soaring arpeggios, and a tempo of 140 BPM. Perfect for dancing!</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/This_song_is_an_exciting_and_driving_progressive_h_1111.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Glitch, Drum and Bass, 180 BPM, industrial, dark, mood, high intensity, fast, pulsating high-hats</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/Glitch_180_BPM_industrial_dark_mood_.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Relaxing acoustic guitar, nylon strings, fingerpicking, 110 BPM. E minor key.</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/relaxing_acoustic_guitar_nylon_strings_fingerpicki.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Hit Em, a tempo of 160 BPM, hardstyle, crunchy, fast, driving, heavy kicks, dense hi-hats</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/Hit_Em_a_tempo_of_160_BPM_hardstyle_crunchy_fast_d.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">This music is instrumental with a genre of pop, folk, singer-songwriter, and British folk influences. It sets a mellow mood with a time signature of 4/4 and a tempo of 60.0 bpm, suitable for a coffee shop ambiance or as background music at a charity event.</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/This_music_is_instrumental_with_a_genre_of_pop_fol.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">The instrumental music piece is characterized by its ambient genre, conveying a calm mood through the use of piano and synth sounds. The scenario depicted seems to be set in space, possibly depicting an interstellar journey or exploration given the cosmic feel of the music.</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/The_instrumental_music_piece_is_characterized_by_i.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Jungle! Big wahhs, heavy bass hits and kicks, glitches, filter sweeps, tempo of 180 BPM</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/jungle!_big_wahhs_heavy_bass_hits_and_kicks_glitch.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">A melodic trance DJ set, with euphoric, clean synths, and a pulsating danceable beat, 130 BPM, some fun arpeggios sporadically</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/a_melodic_trance_DJ_set_with_euphoric_clean_synths.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Chill lo-fi beats, laid-back drums, jazzy chords, 90 BPM, lowpass filter</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/chill_lo-fi_beats_dilla_drums_jazzy_chords_90_BPM.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">120 BPM atmospheric psytrance track with a wide stereo image, intricate percussion, and evolving textural pads, A minor</td>
+              <td><audio controls preload="none"><source src="audio/cherrypicked/120_BPM_atmospheric_psytrance_track_with_a_wide_st.wav" type="audio/wav"></audio></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="generative-delay">
+      <h2>LMDM Generative Delay Interactions</h2>
+      <p class="lede">
+        Sessions used the real-time generative delay deployment described in the paper; screen captures are hosted on YouTube.
+      </p>
+      <div class="video-grid">
+        <article class="video-card">
+          <h3>Guitarist demo — Sebastian Franjou (Jamendo trained LMDM, Enc-Dec, arc-forced, 230/10 context/block_size)</h3>
+          <p>This clip shows guitarist Sebastian Franjou using the generative delay effect. This particular clip was generated with the prompt "EDM, strong sub bass groove, soaring synth leads". This model has a one second delay. Notice how the delay effect transforms his guitar signal while maintaining a strong rhythmic structure in the low end.</p>
+          <iframe src="https://www.youtube-nocookie.com/embed/7UXvea7gcps" title="Sebastian Franjou — guitarist demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </article>
+        <article class="video-card">
+          <h3>Saxophonist demo — Matthew Michalek (Jamendo trained LMDM, Enc-Dec, arc-forced, 230/10 context/block_size, drum loop passed through sketch conditions for rhythmic consistency)</h3>
+          <p>This clip shows saxophonist Matthew Michalek using the generative delay effect. Same prompt as above; this model has a one second delay. Notice how at 2:25 he learns that playing a particular note triggers a deep sub bass punch, while also mimicking his playing with a synth lead as a delay, allowing him to create an orchestrated and dynamic mix on the fly.</p>
+          <iframe src="https://www.youtube-nocookie.com/embed/pnZ__ENfRBo" title="Matthew Michalek — saxophonist demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </article>
+        <article class="video-card">
+          <h3>Cellist — Valerie K. Chen (humpback whale calls trained LMDM, Enc-Dec, not arc-forced, 255/47 context/block_size)</h3>
+          <p>This clip documents cellist Valerie K. Chen in the first performance for the generative delay trained on humpback whale calls. The whale sounds start to come in at 2:18.</p>
+          <iframe src="https://www.youtube-nocookie.com/embed/5CEQpnh1LJ4" title="Valerie K. Chen — cellist demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </article>
+        <article class="video-card">
+          <h3>Saxophonist — Matthew Michalek, birdsong (FSD50K trained LMDM, Enc-Dec, not arc-forced, 255/47 context/block_size)</h3>
+          <p>This clip demonstrates the foley model being prompted to regenerate Matthew Michalek's saxophone playing as birdsong. This model has a three second delay.</p>
+          <iframe src="https://www.youtube-nocookie.com/embed/mnxVLT8mAQ4" title="Matthew Michalek — birdsong demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </article>
+        <article class="video-card">
+          <h3>Saxophonist — Matthew Michalek, chimes (FSD50K trained LMDM, Enc-Dec, not arc-forced, 255/47 context/block_size)</h3>
+          <p>This clip demonstrates the foley model being prompted to regenerate Matthew Michalek's saxophone playing as chimes.</p>
+          <iframe src="https://www.youtube-nocookie.com/embed/mhadlz_GIU0" title="Matthew Michalek — chimes demo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </article>
+      </div>
+    </section>
+
+    <section id="text-conditioned">
+      <h2>Text-conditioned generation</h2>
+      <p class="lede">
+        Uncurated comparison samples. Each row is one text prompt. Columns compare the fine-tuned LMDM variants against the fine-tuned + ARC-forced LMDM variants in block-causal (BC) and encoder-decoder (ED) configurations. Each cell shows two samples: <strong>primed</strong> (model given an audio context prefix) and <strong>unprimed</strong> (generation from scratch).
+      </p>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Prompt</th>
+              <th>LMDM (BC)</th>
+              <th>LMDM (ED)</th>
+              <th>LMDM + ARC-forced (BC)</th>
+              <th>LMDM + ARC-forced (ED)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="prompt-cell">Ambient · electronic · soundtrack. Outer-space mood; otherworldly landscapes in science fiction settings. 4/4.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/08_1171008_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/08_1171008_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/08_1171008_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/08_1171008_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/08_1171008_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/08_1171008_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/08_1171008_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/08_1171008_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Easy listening · electronic. Calm, dreamlike, serene soundscape. 4/4 · ~129 BPM.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/43_153043_chunk7_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/43_153043_chunk7_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/43_153043_chunk7_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/43_153043_chunk7_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/43_153043_chunk7_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/43_153043_chunk7_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/43_153043_chunk7_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/43_153043_chunk7_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Classical · piano. Lively interlude with a sense of resolution; drama TV closing scene.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/51_272851_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/51_272851_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/51_272851_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/51_272851_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/51_272851_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/51_272851_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/51_272851_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/51_272851_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Electronic · soundtrack. Calm mood; drama movie scene. 4/4 · 80 BPM.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/60_1233160_chunk3_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/60_1233160_chunk3_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/60_1233160_chunk3_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/60_1233160_chunk3_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/60_1233160_chunk3_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/60_1233160_chunk3_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/60_1233160_chunk3_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/60_1233160_chunk3_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Techno · electronic · trance. G minor · 125 BPM. Deep, emotional, powerful; beach / summer setting.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/71_1353371_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/71_1353371_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/71_1353371_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/71_1353371_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/71_1353371_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/71_1353371_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/71_1353371_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/71_1353371_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Ambient · video game soundtrack. Synth melody · C major · 86 BPM. Upbeat, action-packed scene. 4/4.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/76_665776_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/76_665776_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/76_665776_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/76_665776_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/76_665776_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/76_665776_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/76_665776_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/76_665776_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Deep house · electronic. Warm, groovy. Bass · drums · synth. 4/4 · 109 BPM. Futuristic club.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/80_889180_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/80_889180_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/80_889180_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/80_889180_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/80_889180_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/80_889180_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/80_889180_chunk6_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/80_889180_chunk6_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Classical · ambient. Dominant piano. Calming, relaxing; spa or meditation. Slow-paced · 4/4.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/84_1056584_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/84_1056584_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/84_1056584_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/84_1056584_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/84_1056584_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/84_1056584_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/84_1056584_chunk0_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/84_1056584_chunk0_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Blues · classic rock · pop rock. Uplifting. 4/4 · 136 BPM. Character beginning a journey or adventure.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/95_1079295_chunk2_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/95_1079295_chunk2_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/95_1079295_chunk2_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/95_1079295_chunk2_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/95_1079295_chunk2_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/95_1079295_chunk2_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/95_1079295_chunk2_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/95_1079295_chunk2_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Classical · piano. Emotional. 4/4 · 125 BPM. Steady, measured; reflective or narrative scenarios.</td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/96_997096_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_bc/96_997096_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/96_997096_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/sf_ed/96_997096_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/96_997096_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/bc/96_997096_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+              <td><span class="audio-label">primed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/96_997096_chunk1_primed.wav" type="audio/wav"></audio><span class="audio-label">unprimed</span><audio controls preload="none"><source src="audio/text-conditioned/ed/96_997096_chunk1_unprimed.wav" type="audio/wav"></audio></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="prompt-transitions">
+      <h2>Time-varying (prompt transitions)</h2>
+      <p class="lede">
+        Each clip is generated by <strong>LMDM (Enc–Dec, ARC-forced, block size 192/48)</strong> with a mid-piece prompt switch from A → B. The model receives the new text condition at the transition point and must smoothly continue generation.
+      </p>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Prompt A → Prompt B</th>
+              <th>LMDM (ED, ARC-forced)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Ambient video game · synth · C major · 86 BPM · upbeat action scene<br><strong>B:</strong> Classical ambient · piano · calming · spa / meditation · slow 4/4</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_0.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Classical piano · lively interlude · resolution · drama TV closing scene<br><strong>B:</strong> Classical piano · emotional · 4/4 · 125 BPM · reflective / narrative</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_1.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Electronic soundtrack · calm · drama movie scene · 80 BPM · 4/4<br><strong>B:</strong> Blues / classic rock / pop rock · uplifting · 136 BPM · character starting a journey</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_2.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Easy listening · electronic · calm · dreamlike · ~129 BPM · serene spa<br><strong>B:</strong> Jazz / world music · relaxed · bouncy 4/4 · café / beach party</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_3.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Ambient electronic · outer space · melancholic · 103 BPM · spa / sauna<br><strong>B:</strong> Orchestral classical · woodwinds + harp · proud · royal procession · 4/4</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_4.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Electronic / classical · harp · strings · piano · mysterious film score · ~140 BPM<br><strong>B:</strong> Electronic funk · synth · C major · 125 BPM · deep summer / beach party</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_5.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> French accordion · jazz / manouche / swing · 80 BPM · festive outdoor market<br><strong>B:</strong> Celtic harp · classical · dreamy + festive · medieval fantasy soundtrack</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_6.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Folk / indie · acoustic guitar + tabla · tranquil · 130 BPM · coffee shop<br><strong>B:</strong> Glitch / IDM electronic · moody · ~109 BPM · exploring a new city</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_7.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Classical flute · F# major · nostalgic / romantic · 69 BPM · film reminiscence<br><strong>B:</strong> Techno / deep house · D minor · synth · 4/4 · happy summer / dance club</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_8.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell"><strong>A:</strong> Techno · E minor · 130 BPM · heavy drums · confused mood · cyberpunk game<br><strong>B:</strong> Electronic dance · C# minor · 125 BPM · synth melody · summer / beach party</td>
+              <td><audio controls preload="none"><source src="audio/transitions/sample_9.wav" type="audio/wav"></audio></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="accompaniment">
+      <h2>Accompaniment generation</h2>
+      <p class="lede">
+        Each row is a different accompaniment example. Columns vary the <strong>stem lookahead</strong>: how far into the future of the conditioning stem the model can see at inference time.
+      </p>
+      <dl class="lookahead-legend">
+        <dt>+2 s lookahead</dt><dd>The model sees 2 seconds <em>ahead</em> of the current playback position in the stem it accompanies.</dd>
+        <dt>0 s lookahead</dt><dd>The model sees the stem only up to the <em>current</em> playback position, with no future information.</dd>
+        <dt>−2 s lookahead</dt><dd>The model sees the stem only up to <em>2 seconds before</em> the current playback position; fully causal with an added buffer delay.</dd>
+      </dl>
+      <div class="compare-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Example</th>
+              <th>Lookahead +2 s</th>
+              <th>Lookahead 0 s</th>
+              <th>Lookahead −2 s</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="prompt-cell">Example 1</td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/2s/0.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/0s/0.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/-2s/0.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Example 2</td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/2s/1.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/0s/1.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/-2s/1.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Example 3</td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/2s/2.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/0s/2.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/-2s/2.wav" type="audio/wav"></audio></td>
+            </tr>
+            <tr>
+              <td class="prompt-cell">Example 4</td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/2s/3.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/0s/3.wav" type="audio/wav"></audio></td>
+              <td><audio controls preload="none"><source src="audio/accompaniment/-2s/3.wav" type="audio/wav"></audio></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="cite">
+      <h2>How to cite</h2>
+      <p class="lede">If you use this work, please cite our paper.</p>
+      <div class="citation-wrap">
+        <button type="button" class="copy-cite-btn" data-copy-target="bibtex">Copy BibTeX</button>
+        <pre id="bibtex"><code>@article{novack2026lmdm,
+  title         = {Live Music Diffusion Models: Efficient Fine-Tuning and Post-Training of Interactive Diffusion Music Generators},
+  author        = {Novack, Zachary and Brade, Stephen and Kim, Haven and Flores Garc{\'i}a, Hugo and Shikarpur, Nithya and Talegaonkar, Chinmay and Kim, Suwan and Chen, Valerie K. and McAuley, Julian and Berg-Kirkpatrick, Taylor and Huang, Cheng-Zhi Anna},
+  journal       = {arXiv preprint arXiv:2605.22717},
+  year          = {2026},
+  archivePrefix = {arXiv},
+  eprint        = {2605.22717},
+  primaryClass  = {cs.SD},
+  url           = {https://arxiv.org/abs/2605.22717}
+}</code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="paper-footer">
+    Live Music Diffusion Models · supplementary materials
+  </footer>
+  </div>
+
+  <footer class="site-footer">
+    <p>Human-AI Resonance Lab · MIT</p>
+  </footer>
+
+  <script src="../../assets/js/site.js"></script>
+  <script src="scripts.js" defer></script>
+</body>
+</html>

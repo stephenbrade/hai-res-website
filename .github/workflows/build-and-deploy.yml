@@ -1,0 +1,38 @@
+name: Build listings
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate metadata on PR
+        if: github.event_name == 'pull_request'
+        run: python3 scripts/build_listings.py
+
+      - name: Build and commit listing pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: python3 scripts/build_listings.py
+
+      - name: Commit generated listings
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add people.html blog.html music.html data/blog.json
+          git diff --staged --quiet || git commit -m "chore: regenerate listing pages"
+          git push

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="hai-res:type" content="blog">
+  <meta name="hai-res:date" content="2026-03-01">
+  <meta name="hai-res:title" content="Agents in Concert">
+  <meta name="hai-res:subtitle" content="Bringing AI to the stage with jazz musicians">
+  <meta name="hai-res:excerpt" content="A condensed account of co-designing three AI performance systems for a public concert at MIT.">
+  <meta name="hai-res:thumbnail" content="./assets/thumbnail.svg">
+
+  <link rel="canonical" href="https://agents-in-concert-iui-2026.github.io/" />
+  <title>Agents in Concert: What We Learned Bringing AI to the Stage with Jazz Musicians</title>
+  <link rel="stylesheet" href="../../assets/css/site.css">
+  <link type="text/css" href="./assets/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    article pre.bibtex {
+      font-size: 0.85rem;
+      padding: 1rem;
+      background: var(--bs-secondary-bg);
+      border-radius: 0.375rem;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a class="site-brand" href="../../index.html"><img src="../../assets/images/logo.png" alt="Human-AI Resonance" class="site-brand__logo"></a>
+      <nav class="site-nav" aria-label="Main">
+        <ul>
+          <li><a href="../../index.html">Home</a></li>
+          <li><a href="../../about.html">About</a></li>
+          <li><a href="../../people.html">People</a></li>
+          <li><a href="../../blog.html">Blog</a></li>
+          <li><a href="../../publications.html">Publications</a></li>
+          <li><a href="../../music.html">Music</a></li>
+          <li><a href="../../join.html">Join</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+  <div class="container py-5">
+    <a class="profile-back" href="../../blog.html">← Blog</a>
+    <article>
+      <h1 class="mb-4">Agents in Concert: What We Learned Bringing AI to the Stage with Jazz Musicians</h1>
+
+      <p>AI music systems are advancing quickly. Artificial voices, neural timbres, and agents that respond to human performers are increasingly finding their way into live performance. But the detailed, practice-based process of preparing these systems for the stage is rarely documented. Most published work focuses on the final system, not the weeks of iteration, compromise, and discovery that precede a concert.</p>
+
+      <p>Researchers tracing trends in the New Interfaces for Musical Expression (NIME) community have noted an "increasing expectation for demonstrable technological advances or quantifiable outcomes in NIME research." Evaluation of these systems has gravitated toward lab-based user studies, crowd-sourced listening tests, and detailed descriptions of the final performance-ready artifact—often at the expense of the practice-based insights that emerge from actually bringing them to the stage. As <a href="https://www.tandfonline.com/doi/full/10.1080/09298215.2024.2442348">Pelinski, McPherson, and Fiebrink</a> argue, "Such technoscientific narratives typically focus on the scientific fact or technological artefact, often overlooking valuable insights gained in the process." Parallel calls in HCI advocate for <em>research through artifact creation</em> and in-the-wild studies that integrate technologies into real creative contexts.</p>
+
+      <!-- <figure class="figure my-4">
+        <img src="./assets/images/voyager.png" alt="George Lewis with an early Voyager performance setup" class="figure-img img-fluid rounded border">
+        <figcaption class="figure-caption mt-2">George Lewis with Voyager, an interactive software agent for real-time jazz improvisation, developed in the 1980s. Human–machine improvisation on the concert stage has a longer history than many contemporary AI music projects acknowledge.</figcaption>
+      </figure> -->
+
+      <p>In <em>Agents in Concert</em>, we present a longitudinal account of a two-month collaboration between a team of engineers and three jazz musicians (Sebastian on guitar, Matthew on saxophone, and Andrew on piano) working with three experimental AI performance systems: VampNet, Somax2, and the jam_bot. The collaboration culminated in a public concert for an audience of 97, featuring three improvised pieces, each co-performed with a different AI agent. Here, we share a condensed version of what we learned.</p>
+
+      <hr class="my-4">
+
+      <h2 class="mt-5 mb-3">Starting with Skepticism</h2>
+
+      <p>Our musicians came in with reservations about AI in performance. Sebastian felt that prompt-based generative AI workflows diminished his sense of agency as a musician. Matthew questioned the ethics of training data provenance. Both Andrew and Matthew had watched a prior demo of the jam_bot and, while they found the output musically interesting, felt it lacked cohesion with the human performer. Matthew described it as sounding like "somebody added a sample to the song."</p>
+
+      <p>We chose to work with jazz musicians deliberately. Improvisation requires reacting to unexpected contributions from other players, and these AI systems introduce a great deal of the unexpected. We also chose to work with only three musicians. Concert preparation is demanding under normal circumstances, and adding experimental AI systems compounds that complexity. Working with a small cohort allowed us to go deep with each musician-system pairing.</p>
+
+      <p>The first month was dedicated to exploration. We introduced each system through demos, individual practice sessions, and group jams, meeting weekly for three-hour sessions. Some of the most important moments were unplanned.</p>
+
+      <figure class="figure my-4">
+        <div class="ratio ratio-16x9 bg-body-secondary rounded d-flex align-items-center justify-content-center border">
+          <span class="text-muted text-center px-3">NEED TO RETRIEVE VIDEO BEEFORE RELEASE</span>
+        </div>
+        <figcaption class="figure-caption mt-2">Accidental Disklavier moment with Somax2</figcaption>
+      </figure>
+
+      <p>During a Somax2 session, we accidentally routed the system's MIDI output to a Yamaha Disklavier, a self-playing grand piano. The result was striking: the AI suddenly had a physical embodiment. The piano keys moved on their own, and the musicians could see the agent's behavior in real time. Matthew shifted from treating Somax2 as a backing track to responding to it as a musical partner. This accident reshaped the trajectory of the project, and the Disklavier became central to both the Somax2 and jam_bot pieces going forward.</p>
+
+      <p>The jam_bot, a transformer-based system for real-time co-improvisation, produced its own discoveries. The musicians described watching the Disklavier play the jam_bot's output as "sitting next to a fireplace." But the system could also be overwhelming. Matthew felt it was sometimes "almost too spontaneous, bordering on nonsense." This tension between spontaneity and coherence became a defining theme of the entire project.</p>
+
+      <figure class="figure my-4">
+        <div class="ratio ratio-16x9 bg-body-secondary rounded d-flex align-items-center justify-content-center border">
+          <span class="text-muted text-center px-3">NEED TO RETRIEVE VIDEO BEEFORE RELEASE</span>
+        </div>
+        <figcaption class="figure-caption mt-2">Early jam_bot + Disklavier interactions</figcaption>
+      </figure>
+
+      <hr class="my-4">
+
+      <h2 class="mt-5 mb-3">Building Toward the Stage</h2>
+
+      <p>After the first month of exploration, each musician paired with a dedicated engineer and committed to a single system. The approaching concert date transformed the nature of the work. Weekly sessions shifted from open-ended exploration to structured iteration: the musicians would try the latest engineering modifications, then perform a work-in-progress for the full group in a "show-and-tell" format, followed by group discussion.</p>
+
+      <p>Each piece took shape around the relationship between the musician and their system.</p>
+
+      <p><strong>Sebastian and VampNet: <em>End of Summer.</em></strong> Sebastian wanted full autonomy, with no computer musician assisting him, just his guitar and the system. VampNet transforms recorded audio loops into evolving textures, and Sebastian wanted to harness this capacity in performance. We built a pedalboard that mapped VampNet's controls to foot switches, and developed an automated "clean-to-janky" macrocontrol that ramped up generative intensity over successive loops. This allowed Sebastian to shape compositional arcs (tension, release, crescendo) while keeping his hands on his instrument. The pedalboard went through several iterations: continuous expression pedals proved unworkable because VampNet's processing delay made them unresponsive, which led us to trigger-based automation instead. Each problem surfaced the next design question.</p>
+
+      <figure class="figure my-4">
+        <img src="./assets/images/vampnet.jpg" alt="VampNet performance setup — pedalboard interface and VampNet interface layout (see paper Figure 2)" class="figure-img img-fluid rounded border">
+        <figcaption class="figure-caption mt-2">VampNet performance setup — pedalboard interface and VampNet interface layout (see paper Figure 2)</figcaption>
+      </figure>
+
+      <p><strong>Matthew and Somax2: <em>6x4.</em></strong> Matthew's piece was the most architecturally complex: 24 Somax2 agents arranged in a 4×6 matrix, each drawing from pre-composed corpora. He initially wanted the ensemble to progress autonomously, inspired by Terry Riley's <em>In C</em>. But the system could not reliably advance through sections on its own, and triggering agents by playing specific notes introduced too much cognitive load during performance. After several weeks of iteration, we introduced Sandra as a computer musician to navigate between sections while Matthew improvised freely. We also developed a TouchDesigner visualization that showed the audience which agents were active and how they related to Matthew's playing. This was an emergent design goal that we had not anticipated at the outset.</p>
+
+      <figure class="figure my-4">
+        <img src="./assets/images/Somax2_graphic.jpg" alt="Somax2 player ensemble layout — 4×6 matrix showing player roles, corpus types, and influence relationships (see paper Figure 3)" class="figure-img img-fluid rounded border">
+        <figcaption class="figure-caption mt-2">Somax2 player ensemble layout — 4×6 matrix showing player roles, corpus types, and influence relationships (see paper Figure 3)</figcaption>
+      </figure>
+
+      <p><strong>Andrew and the jam_bot: <em>Duæl Music.</em></strong> Andrew's piece leaned into the jam_bot's spontaneity. He performed on a Disklavier with the jam_bot generating MIDI output on the same instrument. As he described it, "now I have four hands." We modified the jam_bot's interaction strategy so that Andrew could control when to prompt the system using a sustain pedal, and built a Novation Launchpad interface for adjusting range, velocity, and note density during performance. We also leveraged the jam_bot's ability to generate faster than real time to create a visualization of upcoming notes, allowing Andrew to anticipate what the system was about to play.</p>
+
+      <figure class="figure my-4">
+        <img src="./assets/images/jam_bot_performance_figure.jpg" alt="jam_bot performance setup — Disklavier, Launchpad interface, and sustain pedal layout (see paper Figure 4)" class="figure-img img-fluid rounded border">
+        <figcaption class="figure-caption mt-2">jam_bot performance setup — Disklavier, Launchpad interface, and sustain pedal layout (see paper Figure 4)</figcaption>
+      </figure>
+
+      <p>Across all three pieces, we observed a recurring pattern: the musicians instinctively sought to constrain the AI's more unpredictable tendencies in order to maintain musical coherence. Yet this unpredictability was often the source of the most compelling musical moments.</p>
+
+      <hr class="my-4">
+
+      <h2 class="mt-5 mb-3">The Concert and Reflections</h2>
+
+      <figure class="figure my-4">
+        <div class="ratio ratio-16x9 bg-body-secondary rounded d-flex align-items-center justify-content-center border">
+          <span class="text-muted text-center px-3">Upload full concert video to YouTube and replace with an embed (see CONTRIBUTING.md)</span>
+        </div>
+        <figcaption class="figure-caption mt-2">Full concert video</figcaption>
+      </figure>
+
+      <p>Ninety-seven people attended the concert, and 71 participated in our audience study. Their responses revealed an interesting divide: some felt the AI systems were given too much agency in the performances, while others felt they were not given enough. One audience member captured this well, noting that they could see how much development these tools still needed, but also worrying that once the systems become highly capable, the human element might feel less essential. They found themselves drawn in precisely because of the imperfections.</p>
+
+      <p>The musicians' reflections echoed this tension from the performer's side. All three expressed a wish to have given their systems more room. Sebastian wanted VampNet to be more "free and loose" but felt he would have needed more practice time to manage that uncertainty. Andrew felt he underused the jam_bot under performance pressure, defaulting to his own playing rather than engaging the system's unpredictability. Matthew came to view Somax2 not as a tool but as an instrument, one requiring months of dedicated practice, much like learning any new instrument from scratch.</p>
+
+      <p>Their advice to future musicians working with these systems was consistent: lean into the uncertainty, identify the distinctly non-human behaviors, and find ways to make them musical. These systems demand the same commitment as learning a new instrument.</p>
+
+      <hr class="my-4">
+
+      <h2 class="mt-5 mb-3">A New Practice Emerging</h2>
+
+      <p>What became clear over the course of this project is that something genuinely new is taking shape. This is not AI replacing musicians, nor musicians using AI as a sophisticated backing track. It is a collaborative medium in which the synthetic agency of these systems opens possibilities that neither human nor machine would reach independently. Our musicians entered the project with skepticism and emerged with a different perspective, not because the technology was seamless, but because embedding it in their creative practice revealed something they could not have anticipated from the outside.</p>
+
+      <p>A tradition is forming, and we are still in its early stages.</p>
+
+      <hr class="my-4">
+
+      <p><strong>Read the full paper:</strong> <a href="https://doi.org/10.1145/3742413.3789104">Agents in Concert: A Case-Study of Bringing AI to the Stage in Practice</a></p>
+
+      <p>Published at IUI '26: 31st International Conference on Intelligent User Interfaces, Paphos, Cyprus.</p>
+
+      <p><strong>Citation:</strong></p>
+
+      <pre class="bibtex"><code>@inproceedings{10.1145/3742413.3789104,
+  author = {Brade, Stephen and Ma, Teng and Blanchard, Lancelot and Lecamwasam, Kimaya and Salcedo, Carlos Mariano and Kim, Suwan and Naseck, Perry and Li, Andrew and R Michalek, Matthew and Franjou, Sebastian and Huang, Anna},
+  title = {Agents in Concert: A Case-Study of Bringing AI to the Stage in Practice},
+  year = {2026},
+  isbn = {9798400719844},
+  publisher = {Association for Computing Machinery},
+  address = {New York, NY, USA},
+  url = {https://doi.org/10.1145/3742413.3789104},
+  doi = {10.1145/3742413.3789104},
+  booktitle = {Proceedings of the 31st International Conference on Intelligent User Interfaces},
+  pages = {1340--1361},
+  numpages = {22},
+  keywords = {Artificial Intelligence, Music Agents},
+  series = {IUI '26}
+}</code></pre>
+    </article>
+  </div>
+  </main>
+  <footer class="site-footer">
+    <p>Human-AI Resonance Lab · MIT</p>
+  </footer>
+  <script src="../../assets/js/site.js"></script>
+  <script type="text/javascript" src="./assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
