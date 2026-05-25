@@ -150,7 +150,12 @@ def apply_overrides(publications: list[dict], overrides: dict) -> list[dict]:
     return filtered
 
 
-def render_publications(publications: list[dict], updated_at: str, scholar_user_id: str = "") -> str:
+def render_publications(
+    publications: list[dict],
+    updated_at: str,
+    footer: str,
+    scholar_user_id: str = "",
+) -> str:
     rows = []
     for pub in publications:
         title = pub.get("title", "")
@@ -230,9 +235,7 @@ def render_publications(publications: list[dict], updated_at: str, scholar_user_
     </table>
     <p class="pub-updated">Last updated: {html.escape(updated_at)}</p>
   </main>
-  <footer class="site-footer">
-    <p>Human-AI Resonance Lab · MIT</p>
-  </footer>
+  {footer}
   <script src="./assets/js/site.js"></script>
 </body>
 </html>
@@ -270,8 +273,17 @@ def main() -> None:
 
     publications = apply_overrides(payload.get("publications", []), overrides)
     updated_at = payload.get("updated_at", datetime.now(timezone.utc).isoformat())
+
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from build_listings import render_site_footer, scan_directory
+
+    profiles = scan_directory(ROOT / "profiles", "profiles")
+    blogs = scan_directory(ROOT / "blog_posts", "blog_posts")
+    music = scan_directory(ROOT / "music", "music")
+    footer = render_site_footer("./", blogs, profiles, music)
+
     OUTPUT_PATH.write_text(
-        render_publications(publications, updated_at, user_id),
+        render_publications(publications, updated_at, footer, user_id),
         encoding="utf-8",
     )
     print(f"Wrote {OUTPUT_PATH.relative_to(ROOT)}")

@@ -187,7 +187,122 @@ def sync_home_carousel(payload: list[dict]) -> None:
     print(f"Wrote {index_path.relative_to(ROOT)} carousel data")
 
 
-def page_shell(title: str, active: str, body: str) -> str:
+def render_site_footer(
+    prefix: str,
+    blogs: list[Entry],
+    profiles: list[Entry],
+    music: list[Entry],
+) -> str:
+    def href(path: str) -> str:
+        if path.startswith("./"):
+            return prefix + path[2:]
+        return path
+
+    def link_list(entries: list[Entry], label_key: str = "title") -> str:
+        if not entries:
+            return '<li class="site-footer__empty">Coming soon</li>'
+        items = []
+        for entry in sorted(entries, key=lambda e: e.meta[label_key].lower()):
+            items.append(
+                f'<li><a href="{html.escape(href(entry.url))}">'
+                f"{html.escape(entry.meta['title'])}</a></li>"
+            )
+        return "\n        ".join(items)
+
+    blog_entries = sorted(blogs, key=lambda e: e.meta["date"], reverse=True)
+    music_entries = sorted(music, key=lambda e: e.meta["title"].lower())
+
+    blog_links = link_list(blog_entries) if blog_entries else '<li class="site-footer__empty">Coming soon</li>'
+
+    return f"""<footer class="site-footer">
+  <div class="site-footer__inner">
+    <div class="site-footer__row site-footer__row--nav">
+      <div class="site-footer__col">
+        <h3>About Us</h3>
+        <ul>
+          <li><a href="{href('./about.html')}">About the lab</a></li>
+          <li><a href="{href('./join.html')}">Join</a></li>
+          <li><a href="{href('./publications.html')}">Publications</a></li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h3>People</h3>
+        <ul>
+          <li><a href="{href('./people.html')}">All people</a></li>
+          {link_list(profiles)}
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h3>Music</h3>
+        <ul>
+          <li><a href="{href('./music.html')}">All music</a></li>
+          {link_list(music_entries)}
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h3>Concerts</h3>
+        <ul>
+          <li class="site-footer__empty">Coming soon</li>
+        </ul>
+      </div>
+      <div class="site-footer__col">
+        <h3>Blog Posts</h3>
+        <ul>
+          <li><a href="{href('./blog.html')}">All posts</a></li>
+          {blog_links}
+        </ul>
+      </div>
+    </div>
+    <div class="site-footer__row site-footer__row--brand">
+      <p class="site-footer__wordmark">Human-AI<br>Resonance</p>
+    </div>
+    <div class="site-footer__row site-footer__row--meta">
+      <div class="site-footer__meta">
+        <p class="site-footer__mit">MIT</p>
+        <p class="site-footer__address">32 Vassar St<br>Cambridge, MA 02139</p>
+        <p class="site-footer__contact"><a href="mailto:huangcza@mit.edu">huangcza@mit.edu</a></p>
+      </div>
+      <a class="site-footer__cta" href="{href('./join.html')}">Join the lab →</a>
+    </div>
+  </div>
+</footer>"""
+
+
+FOOTER_PATTERN = re.compile(r"<footer class=\"site-footer\">.*?</footer>", re.DOTALL)
+
+
+def sync_footers(footer_root: str, footer_nested: str) -> None:
+    root_pages = [
+        ROOT / "index.html",
+        ROOT / "about.html",
+        ROOT / "join.html",
+        ROOT / "publications.html",
+    ]
+    for path in root_pages:
+        if not path.exists():
+            continue
+        text = FOOTER_PATTERN.sub(footer_root, path.read_text(encoding="utf-8"), count=1)
+        path.write_text(text, encoding="utf-8")
+        print(f"Wrote {path.relative_to(ROOT)} footer")
+
+    for base in (ROOT / "profiles", ROOT / "music", ROOT / "blog_posts"):
+        if not base.exists():
+            continue
+        for child in base.iterdir():
+            if not child.is_dir() or child.name.startswith("_"):
+                continue
+            index = child / "index.html"
+            if index.exists():
+                text = FOOTER_PATTERN.sub(footer_nested, index.read_text(encoding="utf-8"), count=1)
+                index.write_text(text, encoding="utf-8")
+
+    snippets = ROOT / "templates" / "snippets"
+    snippets.mkdir(parents=True, exist_ok=True)
+    (snippets / "site_footer.html").write_text(footer_root + "\n", encoding="utf-8")
+    (snippets / "site_footer_nested.html").write_text(footer_nested + "\n", encoding="utf-8")
+
+
+def page_shell(title: str, active: str, body: str, footer: str) -> str:
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -207,16 +322,14 @@ def page_shell(title: str, active: str, body: str) -> str:
   <main id="main">
     {body}
   </main>
-  <footer class="site-footer">
-    <p>Human-AI Resonance Lab · MIT</p>
-  </footer>
+  {footer}
   <script src="./assets/js/site.js"></script>
 </body>
 </html>
 """
 
 
-def render_people(entries: list[Entry]) -> str:
+def render_people(entries: list[Entry], footer: str) -> str:
     entries = sorted(entries, key=lambda e: e.meta["title"].lower())
     cards = []
     for entry in entries:
@@ -237,10 +350,10 @@ def render_people(entries: list[Entry]) -> str:
 <div class="card-grid">
 {grid}
 </div>"""
-    return page_shell("People", "people", body)
+    return page_shell("People", "people", body, footer)
 
 
-def render_blog(entries: list[Entry]) -> str:
+def render_blog(entries: list[Entry], footer: str) -> str:
     entries = sorted(entries, key=lambda e: e.meta["date"], reverse=True)
     items = []
     for entry in entries:
@@ -267,10 +380,10 @@ def render_blog(entries: list[Entry]) -> str:
 <ul class="blog-list">
 {listing}
 </ul>"""
-    return page_shell("Blog", "blog", body)
+    return page_shell("Blog", "blog", body, footer)
 
 
-def render_music(entries: list[Entry]) -> str:
+def render_music(entries: list[Entry], footer: str) -> str:
     entries = sorted(entries, key=lambda e: e.meta["date"], reverse=True)
     cards = []
     for entry in entries:
@@ -291,7 +404,7 @@ def render_music(entries: list[Entry]) -> str:
 <div class="card-grid">
 {grid}
 </div>"""
-    return page_shell("Music", "music", body)
+    return page_shell("Music", "music", body, footer)
 
 
 def main() -> None:
@@ -303,10 +416,14 @@ def main() -> None:
     export_blog_json(blog_payload)
     sync_home_carousel(blog_payload)
 
+    footer_root = render_site_footer("./", blogs, profiles, music)
+    footer_nested = render_site_footer("../../", blogs, profiles, music)
+    sync_footers(footer_root, footer_nested)
+
     outputs = {
-        ROOT / "people.html": render_people(profiles),
-        ROOT / "blog.html": render_blog(blogs),
-        ROOT / "music.html": render_music(music),
+        ROOT / "people.html": render_people(profiles, footer_root),
+        ROOT / "blog.html": render_blog(blogs, footer_root),
+        ROOT / "music.html": render_music(music, footer_root),
     }
 
     for path, content in outputs.items():
