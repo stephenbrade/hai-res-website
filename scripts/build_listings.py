@@ -210,8 +210,6 @@ def render_site_footer(
         return "\n        ".join(items)
 
     blog_entries = sorted(blogs, key=lambda e: e.meta["date"], reverse=True)
-    music_entries = sorted(music, key=lambda e: e.meta["title"].lower())
-
     blog_links = link_list(blog_entries) if blog_entries else '<li class="site-footer__empty">Coming soon</li>'
 
     return f"""<footer class="site-footer">
@@ -235,8 +233,7 @@ def render_site_footer(
       <div class="site-footer__col">
         <h3>Music</h3>
         <ul>
-          <li><a href="{href('./music.html')}">All music</a></li>
-          {link_list(music_entries)}
+          <li class="site-footer__empty">Coming soon</li>
         </ul>
       </div>
       <div class="site-footer__col">
@@ -308,6 +305,7 @@ def page_shell(title: str, active: str, body: str, footer: str) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
   <title>{html.escape(title)} · Human-AI Resonance</title>
   <link rel="stylesheet" href="./assets/css/site.css">
 </head>
@@ -384,26 +382,9 @@ def render_blog(entries: list[Entry], footer: str) -> str:
 
 
 def render_music(entries: list[Entry], footer: str) -> str:
-    entries = sorted(entries, key=lambda e: e.meta["date"], reverse=True)
-    cards = []
-    for entry in entries:
-        thumb_src = resolve_thumbnail(entry)
-        cards.append(
-            f"""<a class="music-card" href="{html.escape(entry.url)}">
-  <div class="music-card__thumb">
-    <img src="{html.escape(thumb_src)}" alt="">
-  </div>
-  <h4>{html.escape(entry.meta['title'])}</h4>
-  <h5>{html.escape(entry.meta['subtitle'])}</h5>
-</a>"""
-        )
-    grid = "\n".join(cards) if cards else "<p>No compositions listed yet.</p>"
-    body = f"""<p class="section-label">Compositions</p>
+    body = """<p class="section-label">Compositions</p>
 <h1>Music</h1>
-<p class="page-lede">Original works by lab members and collaborators.</p>
-<div class="card-grid">
-{grid}
-</div>"""
+<p class="page-lede">Coming soon.</p>"""
     return page_shell("Music", "music", body, footer)
 
 

@@ -18,7 +18,7 @@ html {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.55;
   color: var(--text);
@@ -37,8 +37,6 @@ body {
 }
 
 .title {
-  font-family: Georgia, "Times New Roman", serif;
-  font-weight: 600;
   font-size: clamp(1.35rem, 3vw, 1.75rem);
   margin: 0 0 0.35rem;
   line-height: 1.25;
@@ -102,9 +100,7 @@ section {
 }
 
 section h2 {
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 1.35rem;
-  font-weight: 600;
   margin: 0 0 0.75rem;
   padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--border);
@@ -223,7 +219,6 @@ section h2 {
 
 .compare-table th {
   background: var(--bg);
-  font-weight: 600;
   text-align: left;
 }
 
@@ -263,7 +258,6 @@ section h2 {
 .video-card h3 {
   margin: 0 0 0.35rem;
   font-size: 0.95rem;
-  font-weight: 600;
 }
 
 .video-card p {
@@ -281,7 +275,6 @@ section h2 {
 .audio-label {
   display: block;
   font-size: 0.7rem;
-  font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--muted);
@@ -301,7 +294,6 @@ section h2 {
 }
 
 .lookahead-legend dt {
-  font-weight: 600;
   white-space: nowrap;
 }
 
