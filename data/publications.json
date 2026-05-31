@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-05-25T18:50:46.235860+00:00",
+  "updated_at": "2026-05-31T10:13:34.004331+00:00",
   "source": "google_scholar",
   "publications": [
     {
@@ -7,7 +7,7 @@
       "authors": "Cheng-Zhi Anna Huang and Ashish Vaswani and Jakob Uszkoreit and Ian Simon and Curtis Hawthorne and Noam Shazeer and Andrew M Dai and Matthew D Hoffman and Monica Dinculescu and Douglas Eck",
       "venue": "ICLR 2019",
       "year": "2018",
-      "citations": 1565,
+      "citations": 1571,
       "scholar_url": "https://arxiv.org/abs/1809.04281",
       "scholar_id": "NRz_EVgAAAAJ:vV6vV6tmYwMC",
       "citations_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=NRz_EVgAAAAJ:vV6vV6tmYwMC"
@@ -17,7 +17,7 @@
       "authors": "Curtis Hawthorne and Andriy Stasyuk and Adam Roberts and Ian Simon and Cheng-Zhi Anna Huang and Sander Dieleman and Erich Elsen and Jesse Engel and Douglas Eck",
       "venue": "ICLR 2019",
       "year": "2018",
-      "citations": 809,
+      "citations": 814,
       "scholar_url": "https://arxiv.org/abs/1810.12247",
       "scholar_id": "NRz_EVgAAAAJ:2P1L_qKh6hAC",
       "citations_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=NRz_EVgAAAAJ:2P1L_qKh6hAC"
@@ -27,7 +27,7 @@
       "authors": "Ryan Louie and Andy Coenen and Cheng-Zhi Anna Huang and Michael Terry and Carrie J Cai",
       "venue": "CHI 2020",
       "year": "2020",
-      "citations": 465,
+      "citations": 467,
       "scholar_url": "",
       "scholar_id": "NRz_EVgAAAAJ:4OULZ7Gr8RgC",
       "citations_url": "https://scholar.google.com/scholar?oi=bibs&hl=en&cites=NRz_EVgAAAAJ:4OULZ7Gr8RgC"
